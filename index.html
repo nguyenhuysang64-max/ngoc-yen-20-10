@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chúc Mừng Ngày Phụ Nữ Việt Nam 20/10 - Dành Tặng Ngọc Yến</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Great+Vibes&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        roseGold: '#B76E79',
+                        pinkGold: '#E8A7A1',
+                        softPink: '#FFF0F5',
+                        goldGlow: '#FFD700',
+                        deepRose: '#D81B60',
+                    },
+                    fontFamily: {
+                        vibes: ['Great Vibes', 'cursive'],
+                        dancing: ['Dancing Script', 'cursive'],
+                        playfair: ['Playfair Display', 'serif'],
+                        montserrat: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Tùy chỉnh CSS & Effects */
+        body {
+            background: linear-gradient(135deg, #1a000c 0%, #380019 40%, #200010 100%);
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        /* Particles Canvas Style */
+        #bgCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Chữ Glow hiệu ứng ánh kim */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.😎,
+                         0 0 20px rgba(255, 105, 180, 0.6),
+                         0 0 30px rgba(255, 215, 0, 0.5),
+                         0 0 40px rgba(216, 27, 96, 0.8);
+            animation: pulseGlow 3s infinite alternate;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFE259 0%, #FFA751 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pink-gradient-text {
+            background: linear-gradient(135deg, #FF9A9E 0%, #FECFEF 99%, #FECFEF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @keyframes pulseGlow {
+            0% { text-shadow: 0 0 10px rgba(255,182,193,0.😎, 0 0 20px rgba(255,105,180,0.6); }
+            100% { text-shadow: 0 0 20px rgba(255,182,193,1), 0 0 35px rgba(255,215,0,0.😎, 0 0 50px rgba(216,27,96,1); }
+        }
+
+        /* Hiệu ứng Mở Thiệp 3D Card Flip */
+        .card-perspective {
+            perspective: 1500px;
+        }
+        
+        .card-inner {
+            transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card-inner.is-open {
+            transform: rotateY(-180deg);
+        }
+
+        .card-front, .card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Hiệu ứng sóng âm audio visualizer */
+        .bar {
+            width: 4px;
+            height: 12px;
+            background-color: #FFB6C1;
+            border-radius: 2px;
+            animation: bounce 1.2s ease-in-out infinite alternate;
+        }
+        .bar:nth-child(2) { animation-delay: 0.2s; }
+        .bar:nth-child(3) { animation-delay: 0.4s; }
+        .bar:nth-child(4) { animation-delay: 0.6s; }
+        
+        .paused .bar {
+            animation-play-state: paused;
+            height: 4px !important;
+        }
+
+        @keyframes bounce {
+            0% { height: 4px; }
+            100% { height: 28px; background-color: #FFD700; }
+        }
+
+        /* Nút tim bay liên tục */
+        .heart-btn {
+            box-shadow: 0 0 25px rgba(233, 30, 99, 0.6);
+            transition: all 0.3s ease;
+        }
+        .heart-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px rgba(255, 105, 180, 0.9);
+        }
+
+        /* Glassmorphism Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        /* Scrollbar tinh tế */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0,0,0,0.2);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 182, 193, 0.4);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="font-montserrat text-white min-h-screen flex flex-col justify-between relative selection:bg-pink-500 selection:text-white">
+
+    <!-- Canvas làm nền hiệu ứng hoa rơi, trái tim & hạt sparkle -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Header & Sound Control -->
+    <header class="relative z-20 w-full max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
+        <!-- Badge Chúc Mừng -->
+        <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-pink-500/30">
+            <span class="animate-pulse text-red-400">❤️</span>
+            <span class="text-xs md:text-sm font-medium tracking-wider text-pink-200">20.10.2026 Special Day</span>
+        </div>
+
+        <!-- Music Controller -->
+        <div class="flex items-center gap-3 bg-black/40 backdrop-blur-md px-4 py-2 rounded-full border border-pink-300/20 shadow-lg">
+            <div id="waveBars" class="flex items-center gap-1 h-8 paused">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <button id="musicBtn" onclick="toggleAudio()" class="text-xs md:text-sm text-pink-200 hover:text-white transition flex items-center gap-2 focus:outline-none">
+                <i id="musicIcon" class="fas fa-music text-pink-400"></i>
+                <span id="musicText" class="hidden sm:inline">Phát nhạc</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Audio Element (Nhạc nền piano/không lời du dương lãng mạn) -->
+    <audio id="bgMusic" loop preload="auto">
+        <!-- Sử dụng bản nhạc piano hòa tấu nhẹ nhàng, lãng mạn -->
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-piano-112328.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 flex-1 flex flex-col items-center justify-center px-4 py-8 max-w-4xl mx-auto w-full text-center">
+        
+        <!-- Top Subtitle -->
+        <p class="font-dancing text-2xl md:text-3xl text-pink-300 mb-2 tracking-wide animate-fade-in">
+            Gửi tới người con gái tuyệt vời nhất ✨
+        </p>
+
+        <!-- Banner Tiêu đề chính -->
+        <h1 class="font-playfair text-3xl sm:text-5xl md:text-6xl font-bold uppercase tracking-wider mb-4 leading-tight glow-text text-pink-100">
+            Chúc Mừng Ngày Phụ Nữ Việt Nam <br class="hidden sm:inline"/>
+            <span class="gold-gradient-text font-extrabold text-4xl sm:text-6xl md:text-7xl block mt-2">20 / 10</span>
+        </h1>
+
+        <!-- Dòng Tên Người Nhận & Người Gửi -->
+        <div class="my-6 p-4 rounded-2xl glass-panel inline-block max-w-2xl w-full border border-pink-400/30 shadow-2xl">
+            <p class="font-vibes text-3xl sm:text-4xl md:text-5xl text-pink-200 leading-relaxed">
+                Gửi tặng <span class="gold-gradient-text font-bold text-4xl sm:text-5xl md:text-6xl underline decoration-pink-500/50 underline-offset-8">Ngọc Yến</span> 💕
+            </p>
+            <div class="h-0.5 w-24 mx-auto my-3 bg-gradient-to-r from-transparent via-pink-400 to-transparent"></div>
+            <p class="font-montserrat text-xs sm:text-sm md:text-base text-pink-100/90 font-light tracking-widest uppercase">
+                From <span class="font-semibold text-amber-300">Huy Sang</span> với tất cả tình yêu thương
+            </p>
+        </div>
+
+        <!-- Bức thư / Thiệp chúc mừng 3D interactive -->
+        <div class="w-full max-w-lg mx-auto card-perspective my-8">
+            <div id="greetingCard" class="card-inner relative w-full h-[420px] sm:h-[460px] rounded-2xl shadow-2xl cursor-pointer">
+                
+                <!-- Bìa Thiệp (Front) -->
+                <div onclick="openCard()" class="card-front absolute inset-0 w-full h-full glass-panel rounded-2xl border-2 border-pink-300/40 p-6 flex flex-col justify-between items-center text-center bg-gradient-to-br from-pink-900/60 via-purple-900/40 to-red-950/80 shadow-pink-900/50 shadow-2xl">
+                    <div class="w-full flex justify-between items-center text-pink-300 opacity-70">
+                        <i class="fas fa-heart text-xl"></i>
+                        <span class="text-xs uppercase tracking-widest">Thư Mật</span>
+                        <i class="fas fa-heart text-xl"></i>
+                    </div>
+
+                    <div class="my-auto transform transition duration-500 hover:scale-105">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 rounded-full bg-gradient-to-tr from-pink-500 to-amber-300 p-1 flex items-center justify-center shadow-lg animate-bounce">
+                            <div class="w-full h-full bg-red-950 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope-open-text text-3xl sm:text-4xl text-pink-300"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-dancing text-3xl sm:text-4xl text-amber-200 mb-2">Mở thiệp chúc mừng</h3>
+                        <p class="text-xs sm:text-sm text-pink-200/80 font-light">Chạm nhẹ vào đây để khám phá món quà dành cho Ngọc Yến ✨</p>
+                    </div>
+
+                    <div class="text-xs text-pink-300/60 flex items-center gap-2">
+                        <i class="fas fa-sparkles"></i> Dành riêng cho ngày 20/10 <i class="fas fa-sparkles"></i>
+                    </div>
+                </div>
+
+                <!-- Nội dung bên trong thiệp (Back) -->
+                <div class="card-back absolute inset-0 w-full h-full bg-slate-900/95 backdrop-blur-xl rounded-2xl border-2 border-amber-300/50 p-6 sm:p-8 flex flex-col justify-between text-left overflow-y-auto shadow-2xl">
+                    <div>
+                        <div class="flex justify-between items-center mb-4 border-b border-pink-500/20 pb-2">
+                            <h4 class="font-dancing text-2xl text-amber-300 font-bold">Thương gửi Ngọc Yến,</h4>
+                            <button onclick="closeCard(event)" class="text-pink-300/60 hover:text-white text-sm bg-white/10 px-2 py-1 rounded">
+                                <i class="fas fa-times"></i> Đóng
+                            </button>
+                        </div>
+                        
+                        <div class="space-y-3 font-montserrat text-xs sm:text-sm text-pink-100/90 leading-relaxed">
+                            <p>
+                                Nhân ngày Phụ nữ Việt Nam 20/10, chúc Ngọc Yến luôn đong đầy niềm vui, lúc nào cũng nở nụ cười rạng rỡ và thật hạnh phúc! 🌸
+                            </p>
+                            <p>
+                                Mong rằng Yến luôn giữ vững sự tự tin, luôn xinh đẹp, trẻ trung và đạt được mọi giấc mơ, mục tiêu mà mình mong muốn.
+                            </p>
+                            <p class="text-pink-200 italic font-dancing text-base sm:text-lg">
+                                "Cảm ơn em đã xuất hiện và mang đến những điều tuyệt vời nhất. Mong những ngày tháng phía trước của Ngọc Yến luôn ngập tràn ánh nắng và yêu thương!"
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-pink-500/20 flex justify-between items-end">
+                        <div>
+                            <p class="text-[10px] text-pink-300/70">Yêu thương rất nhiều,</p>
+                            <p class="font-vibes text-2xl text-amber-300">Huy Sang</p>
+                        </div>
+                        <div class="text-pink-400 text-lg">
+                            <i class="fas fa-heart animate-ping"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Các Nút Tương Tác Thú Vị -->
+        <div class="flex flex-wrap items-center justify-center gap-4 my-4 w-full">
+            <!-- Nút Bật Pháo Hoa / Thả Tim -->
+            <button onclick="triggerLoveSurprise()" class="heart-btn bg-gradient-to-r from-rose-500 via-pink-600 to-red-500 text-white font-semibold px-6 py-3.5 rounded-full flex items-center gap-3 text-sm sm:text-base cursor-pointer">
+                <i class="fas fa-heart text-amber-300 text-lg"></i>
+                <span>Thả tim & Quà bất ngờ 💕</span>
+            </button>
+
+            <!-- Nút Mở Thiệp Nhanh -->
+            <button onclick="openCard()" class="bg-white/10 hover:bg-white/20 text-pink-200 border border-pink-300/30 px-6 py-3.5 rounded-full flex items-center gap-2 text-sm sm:text-base backdrop-blur-md transition">
+                <i class="fas fa-envelope-open"></i>
+                <span>Xem lời chúc</span>
+            </button>
+        </div>
+
+        <!-- Bảng những điều tuyệt vời của Ngọc Yến -->
+        <div class="w-full mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div class="glass-panel p-3 rounded-xl border border-pink-500/20">
+                <div class="text-2xl mb-1">👑</div>
+                <div class="text-xs text-pink-300 font-semibold">Xinh Đẹp Nhất</div>
+                <div class="text-[10px] text-pink-100/70">100% Rạng rỡ</div>
+            </div>
+            <div class="glass-panel p-3 rounded-xl border border-pink-500/20">
+                <div class="text-2xl mb-1">💖</div>
+                <div class="text-xs text-pink-300 font-semibold">Ấm Áp Nhất</div>
+                <div class="text-[10px] text-pink-100/70">Luôn dịu dàng</div>
+            </div>
+            <div class="glass-panel p-3 rounded-xl border border-pink-500/20">
+                <div class="text-2xl mb-1">🌟</div>
+                <div class="text-xs text-pink-300 font-semibold">Tỏa Sáng Nhất</div>
+                <div class="text-[10px] text-pink-100/70">Mọi lúc mọi nơi</div>
+            </div>
+            <div class="glass-panel p-3 rounded-xl border border-pink-500/20">
+                <div class="text-2xl mb-1">🎁</div>
+                <div class="text-xs text-pink-300 font-semibold">Hạnh Phúc Nhất</div>
+                <div class="text-[10px] text-pink-100/70">Hôm nay & mãi sau</div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full text-center py-6 text-xs text-pink-300/60 border-t border-pink-500/10 mt-6">
+        <p>Crafted with ❤️ by <span class="text-amber-200 font-medium">Huy Sang</span> for <span class="text-pink-200 font-medium">Ngọc Yến</span> • Happy Vietnamese Women's Day</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        /* -------------------------------------------------------------
+           1. Hiệu ứng Background Canvas (Hoa rơi, Trái tim, Sparkles)
+        ------------------------------------------------------------- */
+        const canvas = document.getElementById('bgCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+
+        function resizeCanvas() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        // Loại hạt: 0 = Cánh hoa hồng, 1 = Trái tim, 2 = Sparkle
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+
+            reset() {
+                this.x = Math.random() * width;
+                this.y = -20;
+                this.size = Math.random() * 12 + 6;
+                this.speedY = Math.random() * 1.5 + 0.8;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.type = Math.floor(Math.random() * 3);
+                this.rotation = Math.random() * 360;
+                this.rotSpeed = (Math.random() - 0.5) * 2;
+                this.opacity = Math.random() * 0.7 + 0.3;
+                this.color = ['#FFB6C1', '#FF69B4', '#FFD700', '#FF1493'][Math.floor(Math.random() * 4)];
+            }
+
+            update() {
+                this.y += this.speedY;
+                this.x += Math.sin(this.y * 0.01) + this.speedX;
+                this.rotation += this.rotSpeed;
+
+                if (this.y > height + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate((this.rotation * Math.PI) / 180);
+                ctx.globalAlpha = this.opacity;
+
+                if (this.type === 0) {
+                    // Cánh hoa (Petal)
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.ellipse(0, 0, this.size / 2, this.size, Math.PI / 4, 0, 2 * Math.PI);
+                    ctx.fill();
+                } else if (this.type === 1) {
+                    // Trái tim (Heart)
+                    ctx.fillStyle = '#E91E63';
+                    ctx.beginPath();
+                    let topCurveHeight = this.size * 0.3;
+                    ctx.moveTo(0, topCurveHeight);
+                    ctx.bezierCurveTo(0, 0, -this.size / 2, 0, -this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(-this.size / 2, (this.size + topCurveHeight) / 2, 0, this.size, 0, this.size);
+                    ctx.bezierCurveTo(0, this.size, this.size / 2, (this.size + topCurveHeight) / 2, this.size / 2, topCurveHeight);
+                    ctx.bezierCurveTo(this.size / 2, 0, 0, 0, 0, topCurveHeight);
+                    ctx.fill();
+                } else {
+                    // Sparkle (Hạt lấp lánh)
+                    ctx.fillStyle = '#FFD700';
+                    ctx.beginPath();
+                    ctx.arc(0, 0, this.size / 4, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.restore();
+            }
+        }
+
+        // Tạo số lượng hạt phù hợp màn hình
+        const particleCount = window.innerWidth < 768 ? 35 : 70;
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+
+        /* -------------------------------------------------------------
+           2. Tương tác Mở / Đóng Thiệp 3D
+        ------------------------------------------------------------- */
+        const card = document.getElementById('greetingCard');
+
+        function openCard() {
+            if (!card.classList.contains('is-open')) {
+                card.classList.add('is-open');
+                // Tự động bắn hiệu ứng confetti khi mở thiệp
+                launchConfetti();
+                // Bật nhạc nếu chưa bật
+                autoPlayMusic();
+            }
+        }
+
+        function closeCard(event) {
+            event.stopPropagation(); // Ngăn sự kiện click lan ra ngoài
+            card.classList.remove('is-open');
+        }
+
+
+        /* -------------------------------------------------------------
+           3. Quản lý Âm Nhạc (Audio) & Waves Animation
+        ------------------------------------------------------------- */
+        const audio = document.getElementById('bgMusic');
+        const waveBars = document.getElementById('waveBars');
+        const musicText = document.getElementById('musicText');
+        const musicIcon = document.getElementById('musicIcon');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                waveBars.classList.add('paused');
+                musicText.innerText = 'Phát nhạc';
+                musicIcon.className = 'fas fa-music text-pink-400';
+                isPlaying = false;
+            } else {
+                audio.play().then(() => {
+                    waveBars.classList.remove('paused');
+                    musicText.innerText = 'Tắt nhạc';
+                    musicIcon.className = 'fas fa-pause text-amber-300';
+                    isPlaying = true;
+                }).catch(err => {
+                    console.log('Audio autoplay blocked by browser:', err);
+                });
+            }
+        }
+
+        function autoPlayMusic() {
+            if (!isPlaying) {
+                toggleAudio();
+            }
+        }
+
+
+        /* -------------------------------------------------------------
+           4. Hiệu ứng Pháo Hoa Confetti & Thả Tim Liên Tục
+        ------------------------------------------------------------- */
+        function launchConfetti() {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#FF69B4', '#FFD700', '#FF1493', '#FFFFFF', '#E91E63']
+            });
+        }
+
+        function triggerLoveSurprise() {
+            // Bắn pháo hoa tim nhiều đợt
+            const count = 200;
+            const defaults = { origin: { y: 0.7 } };
+
+            function fire(particleRatio, opts) {
+                confetti(Object.assign({}, defaults, opts, {
+                    particleCount: Math.floor(count * particleRatio)
+                }));
+            }
+
+            fire(0.25, { spread: 26, startVelocity: 55, colors: ['#FF1493', '#FF69B4'] });
+            fire(0.2, { spread: 60, colors: ['#FFD700', '#FFF'] });
+            fire(0.35, { spread: 100, decay: 0.91, scalar: 0.8 });
+            fire(0.1, { spread: 120, startVelocity: 25, decay: 0.92, colors: ['#E91E63'] });
+            fire(0.1, { spread: 120, startVelocity: 45 });
+
+            // Tự động mở thiệp
+            openCard();
+        }
+
+        // Tự động kích hoạt trải nghiệm mượt mà khi tương tác đầu tiên
+        document.body.addEventListener('click', function firstClick() {
+            // Loại bỏ event listener sau lần bấm đầu tiên
+            document.body.removeEventListener('click', firstClick);
+        }, { once: true });
+    </script>
+</body>
+</html>
